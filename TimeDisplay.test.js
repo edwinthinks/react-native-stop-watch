@@ -27,6 +27,7 @@ describe('TimeDisplay', () => {
     props = {
       seconds: undefined
     };
+    mountedTimeDisplay = undefined;
   })
 
   describe('when given 5 seconds', () => {
