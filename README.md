@@ -1,5 +1,7 @@
 # react-native-stop-watch [![Build Status](https://travis-ci.org/edwinthinks/react-native-stop-watch.svg?branch=master)](https://travis-ci.org/edwinthinks/react-native-stop-watch)
 
+A simple Stop Watch application created using a TDD approach to learn [React Native](https://facebook.github.io/react-native/).
+
 ## Installation
 You must have [Node](https://nodejs.org/en/) installed to use this application. Please go [here](https://nodejs.org/en/) for installation instructions.
 
