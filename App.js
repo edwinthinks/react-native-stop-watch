@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, Button, View } from 'react-native';
 import TimeDisplay from './TimeDisplay'
 
 export default class App extends React.Component {
@@ -35,9 +35,18 @@ export default class App extends React.Component {
   }
 
   render() {
+    let toggleButton;
+
+    if (this.state.tickingProcess) {
+      toggleButton = <Button title='Stop' onPress={this.stop}/>
+    } else {
+      toggleButton = <Button title='Start' onPress={this.start}/>
+    }
+
     return (
       <View style={styles.container}>
         <TimeDisplay seconds={this.state.seconds}/>
+        {toggleButton}
       </View>
     );
   }
