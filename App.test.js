@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-native';
 import App from './App';
 import TimeDisplay from './TimeDisplay';
+import Controls from './Controls';
 
 import renderer from 'react-test-renderer';
 
@@ -32,57 +33,12 @@ describe('App', () => {
     })
   })
 
-  describe('rendered start/stop button', () => {
+  describe('rendered Controls', () => {
+    let control = app().root.findByType(Controls)
 
-    describe('when the timer has started', () => {
-      let button;
-
-      beforeEach(() => {
-        app().root.instance.start();
-        button = app().root.findByProps({title: "Stop"})
-      })
-
-      it('should render a stop button', () => {
-        expect(button).toBeDefined();
-      })
-
-      it('should have a Stop title', () => {
-        expect(button.props.title).toBe('Stop');
-      })
-
-      it('should on press trigger stop', () => {
-        expect(button.props.onPress).toBe(app().root.instance.stop)
-      })
-
+    it('should exist', () => {
+      expect(control).toBeDefined();
     })
-
-    describe('when the timer has stopped', () => {
-      let button;
-
-      beforeEach(() => {
-        app().root.instance.start();
-        app().root.instance.stop();
-        startButton = app().root.findByProps({title: 'Start'})
-        clearButton = app().root.findByProps({title: 'Clear'})
-      })
-
-      it('should render a Start button', () => {
-        expect(startButton).toBeDefined();
-      })
-
-      it('should on Start press trigger start', () => {
-        expect(startButton.props.onPress).toBe(app().root.instance.start)
-      })
-
-      it('should render a Clear button', () => {
-        expect(clearButton).toBeDefined();
-      })
-
-      it('should on Clear press trigger clear', () => {
-        expect(clearButton.props.onPress).toBe(app().root.instance.clear)
-      })
-    })
-
   })
 
   describe('start', () => {

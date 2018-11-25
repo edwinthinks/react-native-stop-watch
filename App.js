@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, Button, View } from 'react-native';
 import TimeDisplay from './TimeDisplay'
+import Controls from './Controls'
 
 export default class App extends React.Component {
   constructor() {
@@ -51,22 +52,15 @@ export default class App extends React.Component {
   }
 
   render() {
-    let toggleButton;
-
-    if (this.hasStopped()) {
-      toggleButton = <Button title='Start' onPress={this.start}/>
-    } else {
-      toggleButton = <Button title='Stop' onPress={this.stop}/>
-    }
-
     return (
       <View style={styles.container}>
         <TimeDisplay seconds={this.state.seconds}/>
-        {toggleButton}
-
-        {this.hasStopped() &&
-          <Button title='Clear' onPress={this.clear}/>
-        }
+        <Controls
+          paused={this.hasStopped()}
+          onStart={this.start}
+          onStop={this.stop}
+          onClear={this.clear}
+        />
       </View>
     );
   }
