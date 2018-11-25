@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-native';
 import App from './App';
 import TimeDisplay from './TimeDisplay';
+import Controls from './Controls';
 
 import renderer from 'react-test-renderer';
 
@@ -32,52 +33,12 @@ describe('App', () => {
     })
   })
 
-  describe('rendered start/stop button', () => {
+  describe('rendered Controls', () => {
+    let control = app().root.findByType(Controls)
 
-    describe('when the timer has started', () => {
-      let button;
-
-      beforeEach(() => {
-        app().root.instance.start();
-        button = app().root.findByType(Button)
-      })
-
-      it('should render a stop button', () => {
-        expect(button).toBeDefined();
-      })
-
-      it('should have a Stop title', () => {
-        expect(button.props.title).toBe('Stop');
-      })
-
-      it('should on press trigger stop', () => {
-        expect(button.props.onPress).toBe(app().root.instance.stop)
-      })
-
+    it('should exist', () => {
+      expect(control).toBeDefined();
     })
-
-    describe('when the timer has stopped', () => {
-      let button;
-
-      beforeEach(() => {
-        app().root.instance.start();
-        app().root.instance.stop();
-        button = app().root.findByType(Button)
-      })
-
-      it('should render a start button', () => {
-        expect(button).toBeDefined();
-      })
-
-      it('should have a Start title', () => {
-        expect(button.props.title).toBe('Start');
-      })
-
-      it('should on press trigger start', () => {
-        expect(button.props.onPress).toBe(app().root.instance.start)
-      })
-    })
-
   })
 
   describe('start', () => {
@@ -107,4 +68,16 @@ describe('App', () => {
     })
   })
 
+  describe('clear', () => {
+    beforeEach(() => {
+      app().root.instance.start();
+    })
+
+    it('should set the seconds back to 0', () => {
+      jest.advanceTimersByTime(1000);
+      expect(app().root.instance.state.seconds).toBe(1);
+      app().root.instance.clear();
+      expect(app().root.instance.state.seconds).toBe(0);
+    })
+  })
 })
