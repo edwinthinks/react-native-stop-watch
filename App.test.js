@@ -39,7 +39,7 @@ describe('App', () => {
 
       beforeEach(() => {
         app().root.instance.start();
-        button = app().root.findByType(Button)
+        button = app().root.findByProps({title: "Stop"})
       })
 
       it('should render a stop button', () => {
@@ -62,19 +62,24 @@ describe('App', () => {
       beforeEach(() => {
         app().root.instance.start();
         app().root.instance.stop();
-        button = app().root.findByType(Button)
+        startButton = app().root.findByProps({title: 'Start'})
+        clearButton = app().root.findByProps({title: 'Clear'})
       })
 
-      it('should render a start button', () => {
-        expect(button).toBeDefined();
+      it('should render a Start button', () => {
+        expect(startButton).toBeDefined();
       })
 
-      it('should have a Start title', () => {
-        expect(button.props.title).toBe('Start');
+      it('should on Start press trigger start', () => {
+        expect(startButton.props.onPress).toBe(app().root.instance.start)
       })
 
-      it('should on press trigger start', () => {
-        expect(button.props.onPress).toBe(app().root.instance.start)
+      it('should render a Clear button', () => {
+        expect(clearButton).toBeDefined();
+      })
+
+      it('should on Clear press trigger clear', () => {
+        expect(clearButton.props.onPress).toBe(app().root.instance.clear)
       })
     })
 
@@ -107,4 +112,16 @@ describe('App', () => {
     })
   })
 
+  describe('clear', () => {
+    beforeEach(() => {
+      app().root.instance.start();
+    })
+
+    it('should set the seconds back to 0', () => {
+      jest.advanceTimersByTime(1000);
+      expect(app().root.instance.state.seconds).toBe(1);
+      app().root.instance.clear();
+      expect(app().root.instance.state.seconds).toBe(0);
+    })
+  })
 })
