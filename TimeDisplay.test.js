@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import TimeDisplay from './TimeDisplay';
 
 import renderer from 'react-test-renderer';
+import moment from 'moment';
 
 describe('TimeDisplay', () => {
   let mountedTimeDisplay;
@@ -41,9 +42,10 @@ describe('TimeDisplay', () => {
     })
 
     it('should render 5 as text', () => {
+      let formatted = moment.utc(props.seconds*1000).format('HH:mm:ss')
       // We now need to generate the component with the modified props specified
       // in the setup and check if the contents of a Text is '5'.
-      expect(timeDisplay().root.findByType(Text).props.children).toBe(props.seconds);
+      expect(timeDisplay().root.findByType(Text).props.children).toBe(formatted)
     })
   })
 })

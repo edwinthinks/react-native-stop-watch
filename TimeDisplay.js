@@ -1,9 +1,16 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import moment from 'moment';
 
 class TimeDisplay extends React.Component {
   constructor(props) {
     super(props);
+
+    this.formattedTime = this.formattedTime.bind(this);
+  }
+
+  formattedTime() {
+    return moment.utc(this.props.seconds*1000).format('HH:mm:ss');
   }
 
   render() {
@@ -11,7 +18,7 @@ class TimeDisplay extends React.Component {
     // why would you do that? This is not self-sabotage proof.
     return (
       <View>
-        <Text>{this.props.seconds}</Text>
+        <Text>{this.formattedTime()}</Text>
       </View>
     );
   }
