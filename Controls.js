@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, View } from 'react-native';
+import { StyleSheet, Button, View } from 'react-native';
 
 class Controls extends React.Component {
   render() {
     if (this.props.paused) {
       return (
-        <View>
+        <View style={styles.container}>
           <Button title='Start' onPress={this.props.onStart}/>
+          <Button title='Clear' onPress={this.props.onClear}/>
         </View>
       )
     } else {
       return (
         <View>
           <Button title='Stop' onPress={this.props.onStop}/>
-          <Button title='Clear' onPress={this.props.onClear}/>
         </View>
       )
     }
@@ -27,5 +27,11 @@ Controls.propTypes = {
   onStop: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+  }
+})
 
 export default Controls;

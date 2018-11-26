@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet,View, Text } from 'react-native';
 import moment from 'moment';
 
 class TimeDisplay extends React.Component {
@@ -18,10 +18,16 @@ class TimeDisplay extends React.Component {
     // why would you do that? This is not self-sabotage proof.
     return (
       <View>
-        <Text>{this.formattedTime()}</Text>
+        <Text style={styles.timeText}>{this.formattedTime()}</Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  timeText: {
+    fontSize: 80
+  },
+});
 
 export default TimeDisplay;

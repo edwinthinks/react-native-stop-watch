@@ -37,11 +37,6 @@ describe('<Controls/>', () => {
       stopButton = controls().root.findByProps({ title: 'Stop', onPress: stopFunc})
       expect(stopButton).toBeDefined();
     })
-
-    it('should have the clear button', () => {
-      clearButton = controls().root.findByProps({ title: 'Clear', onPress: clearFunc})
-      expect(clearButton).toBeDefined();
-    })
   })
 
   describe('when paused', () => {
@@ -52,6 +47,11 @@ describe('<Controls/>', () => {
     it('should have the stop button', () => {
       startButton = controls().root.findByProps({ title: 'Start', onPress: startFunc})
       expect(startButton).toBeDefined();
+    })
+
+    it('should have the clear button', () => {
+      clearButton = controls().root.findByProps({ title: 'Clear', onPress: clearFunc})
+      expect(clearButton).toBeDefined();
     })
   })
 
